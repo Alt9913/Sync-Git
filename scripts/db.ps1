@@ -17,7 +17,7 @@ function Initialize-Database($connection) {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         hash TEXT UNIQUE,
         file_name TEXT,
-        CREATE_DATE DATETIME
+        created_at DATETIME
     );
 "@
     $cmd.ExecuteNonQuery()
@@ -27,7 +27,7 @@ function Insert-Hash($connection, $hash, $fileName) {
     $cmd = $connection.CreateCommand()
     # Unklar
     $cmd.CommandText = @"
-    INSERT OR IGNORE INTO images (hash, file_name, CREATE_DATE)
+    INSERT OR IGNORE INTO images (hash, file_name, created_at)
     VALUES (@hash, @file, datetime('now'));
 "@
 
